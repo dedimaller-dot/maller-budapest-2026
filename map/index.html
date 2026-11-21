@@ -709,6 +709,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,l
 #map{position:fixed;inset:0;z-index:1;background:var(--land)}
 .leaflet-container{font:14px Heebo,sans-serif}
 .leaflet-control-attribution{font-size:11px}
+.osm-dark{filter:invert(1) hue-rotate(180deg) brightness(.92) contrast(.9) saturate(.7)}
 .basebanner{position:fixed;z-index:900;inset-inline:12px;margin-inline:auto;max-width:520px;background:var(--warnbg);color:var(--warn);border-radius:10px;padding:8px 12px;font-size:13.5px;box-shadow:0 2px 8px #0003;display:none}
 .basebanner b{font-weight:700}
 .basebanner button{border:0;background:transparent;color:inherit;text-decoration:underline;cursor:pointer;padding:0 4px;font-size:13.5px}
@@ -964,7 +965,7 @@ let tiles=null,tileOk=0,tileErr=0;
 function makeTiles(){
  if(tiles)map.removeLayer(tiles);
  tileOk=0;tileErr=0;
- tiles=L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/'+(dark()?'dark_all':'voyager')+'/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:20,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/attributions">CARTO</a>'});
+ tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,className:dark()?'osm-dark':'',attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'});
  tiles.on('tileload',()=>{tileOk++;if(tileOk===1)baseState()});
  tiles.on('tileerror',()=>{tileErr++;if(tileErr===4&&tileOk===0)baseState()});
  tiles.addTo(map);
