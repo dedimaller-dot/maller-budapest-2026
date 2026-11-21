@@ -375,7 +375,7 @@ const S={day:'fri',fs:store.get('bpm-fs')||'a',su:store.get('bpm-su')||'dry',sco
 
 /* ---------- map ---------- */
 const dark=()=>{const t=document.documentElement.dataset.theme;return t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches)};
-const LIVE=()=>'https://tiles.openfreemap.org/styles/'+(dark()?'dark':'liberty');
+const LIVE=()=>'https://tiles.openfreemap.org/styles/liberty';
 const ll2=ll=>[ll[1],ll[0]];
 const decode=s=>{let i=0,la=0,ln=0;const o=[];while(i<s.length){for(let k=0;k<2;k++){let r=0,sh=0,b;do{b=s.charCodeAt(i++)-63;r|=(b&31)<<sh;sh+=5}while(b>=32);const d=r&1?~(r>>1):r>>1;if(k)ln+=d;else la+=d}o.push([ln/1e5,la/1e5])}return o};
 const FC=fs=>({type:'FeatureCollection',features:fs});
